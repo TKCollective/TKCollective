@@ -1,21 +1,32 @@
 # Tanilo
 
-Verifiable records for AI agent actions. (Tanilo was AgentOracle until September 2026; packages and repositories created under the old name keep working.) Cryptographically signed, offline-verifiable receipts. Standards-track (IETF `draft-krausz-verification-state`).
+Pre-action verification for AI agents: checks the claim an agent is about to act on and signs a receipt anyone can verify offline. (Tanilo was AgentOracle until September 2026; packages and repositories created under the old name keep working.)
 
-**Verify a receipt offline (3 lines):**
+## Verify a receipt offline
+
 ```bash
-pip install agentoracle-receipt-verify
-agentoracle-verify receipt.json
+pip install tanilo-receipt-verify
 ```
 
-**Read more:**
-- 📄 Whitepaper: [agentoracle.co/whitepaper](https://agentoracle.co/whitepaper)
-- 🔧 Free Article 12 self-check: [agentoracle.co/article-12](https://agentoracle.co/article-12)
-- 📋 Spec + conformance vectors: [`agentoracle-receipt-spec`](https://github.com/TKCollective/agentoracle-receipt-spec)
-- 🌐 IETF Internet-Draft: [`agentoracle-ietf-id`](https://github.com/TKCollective/agentoracle-ietf-id)
-- 🧪 Reproducible benchmark: [`agentoracle-benchmark`](https://github.com/TKCollective/agentoracle-benchmark) + [`agentoracle-eval-harness`](https://github.com/TKCollective/agentoracle-eval-harness)
+```python
+from tanilo_receipt_verify import verify
 
-EU AI Act Article 12 applicability begins **2 August 2026**.
+result = verify(envelope, jwks_by_issuer={
+    "https://agentoracle.co/.well-known/jwks.json": ao_jwks,
+    "https://agenttrust.uk/.well-known/jwks.json": at_jwks,
+})
 
----
-*Contact: joe@agentoracle.co · [agentoracle.co](https://agentoracle.co)*
+if result.status == "valid":
+    print("verified — canonical:", result.canonical_sha256)
+```
+
+## Read more
+
+- IETF Internet-Draft (individual submission, work in progress): draft-krausz-verification-state — https://datatracker.ietf.org/doc/draft-krausz-verification-state/ (working repo: [agentoracle-ietf-id](https://github.com/TKCollective/agentoracle-ietf-id))
+- Spec + conformance vectors: [tanilo-receipt-spec](https://github.com/TKCollective/tanilo-receipt-spec)
+- Offline verifier: [tanilo-receipt-verify](https://github.com/TKCollective/tanilo-receipt-verify) ([PyPI](https://pypi.org/project/tanilo-receipt-verify/))
+- Benchmark: [tanilo-benchmark](https://github.com/TKCollective/tanilo-benchmark) + [tanilo-eval-harness](https://github.com/TKCollective/tanilo-eval-harness)
+- MCP server: [tanilo-mcp](https://github.com/TKCollective/tanilo-mcp)
+- Free Article 12 self-check: https://tanilo.io/article-12
+
+Contact: joe@tanilo.io · https://tanilo.io
