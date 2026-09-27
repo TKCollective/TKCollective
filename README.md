@@ -1,6 +1,6 @@
-# AgentOracle
+# Tanilo
 
-Verifiable records for AI agent actions. Cryptographically signed, offline-verifiable receipts. Standards-track (IETF `draft-krausz-verification-state`).
+Verifiable records for AI agent actions. (Tanilo was AgentOracle until September 2026; packages and repositories created under the old name keep working.) Cryptographically signed, offline-verifiable receipts. Standards-track (IETF `draft-krausz-verification-state`).
 
 **Verify a receipt offline (3 lines):**
 ```bash
