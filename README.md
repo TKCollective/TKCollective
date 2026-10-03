@@ -14,7 +14,7 @@ from tanilo_receipt_verify import verify
 result = verify(envelope, jwks_by_issuer={"https://tanilo.io/.well-known/jwks.json": jwks})
 
 if result.status == "valid":
-    print("verified — canonical:", result.canonical_sha256)
+    print("signature valid — canonical:", result.canonical_sha256)
 ```
 
 ## Read more
